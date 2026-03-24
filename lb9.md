@@ -312,7 +312,7 @@ cat /etc/group | grep good_students
 
 Скрін - перегляд груп та їх GID у файлі /etc/group
 
-#### Створення користувачів
+#### Створення користувачів та встановлення паролів
 
 Було створено трьох користувачів:
 ```bash
@@ -320,11 +320,17 @@ sudo useradd -m user1
 sudo useradd -m user2
 sudo useradd -m user3
 ```
+
 Після цього для кожного користувача встановлено пароль:
 ```bash
 sudo passwd user1
 sudo passwd user2
 sudo passwd user3
+```
+
+Перевірка:
+```bash
+cat /etc/passwd | grep user
 ```
 
 <img width="548" height="67" alt="image" src="https://github.com/user-attachments/assets/d83c848a-bec6-4641-bdeb-7e1d5b18ec19" />
@@ -333,9 +339,11 @@ sudo passwd user3
 
 <img width="471" height="295" alt="image" src="https://github.com/user-attachments/assets/4f9c80be-d9e2-4601-9253-9366be56b5f5" />
 
-<img width="932" height="206" alt="image" src="https://github.com/user-attachments/assets/e2f137d5-4471-469b-a58a-059c758cd57a" />
-
 Скрін - встановлення паролів
+
+<img width="932" height="206" alt="image" src="https://github.com/user-attachments/assets/7f62f5b6-43c3-4b48-8148-e3eaf3616264" />
+
+Скрін - перевірка користувачів
 
 #### Додавання користувачів до груп
 
@@ -392,7 +400,17 @@ sudo userdel user3
 getent group
 ```
 
-<img width="550" height="146" alt="image" src="https://github.com/user-attachments/assets/29f648c1-2ff9-41e5-8790-83ce0c3df2be" />
+<img width="509" height="42" alt="image" src="https://github.com/user-attachments/assets/cac5f93d-a7ab-4e30-a6eb-1a9b76c27ad9" />
+
+<img width="580" height="166" alt="image" src="https://github.com/user-attachments/assets/6a5c15c2-2c59-4920-abb0-7673b3fdfc1e" />
+
+<img width="485" height="43" alt="image" src="https://github.com/user-attachments/assets/07471467-f198-4e58-b225-00430bfa1523" />
+
+<img width="552" height="156" alt="image" src="https://github.com/user-attachments/assets/50e59926-e3c9-499a-a063-770a8e8a871c" />
+
+<img width="471" height="32" alt="image" src="https://github.com/user-attachments/assets/dc2ce367-3f54-4bab-9906-34df514d3e15" />
+
+<img width="550" height="146" alt="image" src="https://github.com/user-attachments/assets/2cb47265-a8a0-4b38-80ea-df2586888f8d" />
 
 Скрін - видалення користувачів
 
@@ -410,19 +428,20 @@ sudo groupdel super_admins
 sudo groupdel noob_users
 sudo groupdel good_students
 ```
+
 Перевірка:
 ```bash
 getent group
 ```
 
-<img width="563" height="68" alt="image" src="https://github.com/user-attachments/assets/943709f5-b62f-4e19-a214-9e283a18614c" />
+<img width="563" height="68" alt="image" src="https://github.com/user-attachments/assets/96c73cc1-457a-427b-a396-ddd053a6da1a" />
 
-<img width="612" height="85" alt="image" src="https://github.com/user-attachments/assets/12adbe66-3d65-4ac8-b8c8-cad2e9fc8203" />
+<img width="612" height="85" alt="image" src="https://github.com/user-attachments/assets/e677c4b3-4bbb-403f-a673-5f52a5866686" />
 
 Скрін - видалення груп
 
-<img width="419" height="45" alt="image" src="https://github.com/user-attachments/assets/bcdfc7c2-5ec6-459b-8295-8a5332908095" />
+<img width="419" height="45" alt="image" src="https://github.com/user-attachments/assets/1d840b23-4571-4d67-b843-f4caaee3eb47" />
 
-<img width="359" height="228" alt="image" src="https://github.com/user-attachments/assets/0f33cc85-38cf-41e4-a89d-f32eb4103332" />
+<img width="359" height="228" alt="image" src="https://github.com/user-attachments/assets/cec7ac82-f645-4a17-ad85-512f12545c07" />
 
 Скрін - фінальна перевірка
