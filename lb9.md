@@ -485,6 +485,7 @@ getent group
 ```
 group
 
+<img width="672" height="539" alt="image" src="https://github.com/user-attachments/assets/0ef14bc5-a54e-4d76-a3d5-561b515b56fb" />
 
 Скрін - використання команди getent для перегляду інформації про користувача та групи
 
@@ -498,6 +499,7 @@ passwd
 ```
 Команда запитує новий пароль і зберігає його у зашифрованому вигляді.
 
+<img width="402" height="168" alt="image" src="https://github.com/user-attachments/assets/0b94b8ba-7500-4214-929b-0d1c3c0f8d77" />
 
 Скрін - зміна пароля користувача командою passwd
 
@@ -506,11 +508,14 @@ passwd
 **Яким чином можна видалити існуючі групи користувачів? Чи залишиться інформація про них десь у системі?**
 
 Групи видаляються за допомогою команди:
+
 ```bash
-sudo groupdel groupname
+sudo groupdel test_delete
 ```
+
 Після видалення група зникає з файлу /etc/group і більше не відображається у системі.
 
+<img width="551" height="63" alt="image" src="https://github.com/user-attachments/assets/e7dcedd7-c517-403a-b0c5-b6f0c05f10d7" />
 
 Скрін - видалення групи за допомогою команди groupdel
 
@@ -523,6 +528,7 @@ sudo groupdel groupname
 chage -l $(whoami)
 ```
 
+<img width="759" height="207" alt="image" src="https://github.com/user-attachments/assets/cfada369-8b20-4601-9695-da143192dde6" />
 
 Скрін - перегляд параметрів пароля командою chage
 
@@ -541,5 +547,16 @@ chage -l $(whoami)
 sudo usermod -aG sudo $(whoami)
 ```
 
+<img width="616" height="50" alt="image" src="https://github.com/user-attachments/assets/015864a0-d77f-49b3-bcab-5ac715eda6f6" />
 
 Скрін - додавання користувача до групи за допомогою usermod
+
+### Conclusion
+
+During this laboratory work, I studied the basic principles of user and group management in the Linux operating system.
+
+I explored different ways to view user information, analyze user activity, and understand the differences between the who, w, and last commands. I also learned how to create new users and groups, modify their parameters, and manage access permissions.
+
+Additionally, I performed practical tasks such as adding users to groups, verifying group membership, and deleting users and groups while analyzing the changes in the system.
+
+As a result, I concluded that Linux provides flexible and efficient tools for user management, and proper use of administrative commands improves system security and stability.
