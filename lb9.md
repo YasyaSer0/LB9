@@ -483,7 +483,6 @@ getent group
 getent passwd $(whoami)
 getent group
 ```
-group
 
 <img width="672" height="539" alt="image" src="https://github.com/user-attachments/assets/0ef14bc5-a54e-4d76-a3d5-561b515b56fb" />
 
