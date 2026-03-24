@@ -179,6 +179,7 @@ sudo groupmod -g 2000 students
 Для виконання лабораторної роботи було запущено віртуальну машину VM2_Linux_CLI у середовищі VirtualBox. Після запуску відбулося завантаження операційної системи Linux Ubuntu в режимі командного рядка (CLI)
 
 ### 1.2 Опрацювання команд Lab 15 - System and User Security
+
 | Назва команди | Її призначення та функціональність |
 |---|---|
 | su - | Команда **su** використовується для перемикання на іншого користувача. У даному випадку команда **su -** дозволяє перейти до користувача root та відкрити нову оболонку з його правами. |
@@ -196,3 +197,232 @@ sudo groupmod -g 2000 students
 | who | Команда **who** використовується для перегляду користувачів, які зараз увійшли в систему. Вона показує ім’я, термінал, дату та час входу. |
 | w | Команда **w** використовується для отримання детальної інформації про користувачів, включаючи їх активність, навантаження системи та виконувані процеси. |
 | last | Команда **last** використовується для перегляду історії входів у систему. Вона читає дані з файлу **/var/log/wtmp** та показує всі входи та перезавантаження. |
+
+### 1.3 Опрацювання команд Lab 16 - Creating Users and Groups
+
+| Назва команди | Її призначення та функціональність |
+|---|---|
+| su - | Команда **su** використовується для перемикання на користувача root для виконання адміністративних дій. |
+| groupadd -r research | Команда **groupadd** створює нову групу. Параметр **-r** означає створення системної групи з GID у діапазоні 1–999. |
+| groupadd -r sales | Команда **groupadd** створює нову системну групу **sales**. |
+| getent group research | Команда **getent** використовується для отримання інформації про групу **research** з системної бази даних. |
+| grep sales /etc/group | Команда **grep** використовується для пошуку запису про групу **sales** у файлі **/etc/group**. |
+| groupmod -n clerks sales | Команда **groupmod** використовується для зміни назви групи з **sales** на **clerks**. |
+| groupmod -g 10003 clerks | Команда **groupmod** використовується для зміни GID групи **clerks**. |
+| grep clerks /etc/group | Команда **grep** використовується для перевірки змін у групі **clerks**. |
+| groupdel clerks | Команда **groupdel** використовується для видалення групи **clerks**. |
+| useradd -D | Команда **useradd -D** використовується для перегляду значень за замовчуванням при створенні користувачів. |
+| useradd -D -f 30 | Команда **useradd** з параметром **-D -f 30** змінює значення INACTIVE, дозволяючи користувачу входити ще 30 днів після завершення дії пароля. |
+| nano /etc/default/useradd | Команда **nano** використовується для редагування конфігураційного файлу налаштувань створення користувачів. |
+| useradd -G research -c 'Linux Student' -m student | Команда **useradd** створює нового користувача. Параметр **-G** додає до додаткової групи, **-c** задає опис, **-m** створює домашню директорію. |
+| grep student /etc/passwd | Команда **grep** використовується для перевірки створення користувача у файлі **/etc/passwd**. |
+| grep student /etc/group | Команда **grep** використовується для перевірки членства користувача у групах. |
+| usermod -aG research sysadmin | Команда **usermod** використовується для додавання користувача до додаткової групи (**-aG**). |
+| getent group research | Команда **getent** показує список користувачів у групі **research**. |
+| getent group student | Команда **getent** показує інформацію про групу **student**. |
+| getent passwd student | Команда **getent** використовується для перегляду інформації про користувача. |
+| getent shadow student | Команда **getent** використовується для перегляду інформації про пароль користувача. |
+| passwd student | Команда **passwd** використовується для встановлення або зміни пароля користувача. |
+| last | Команда **last** використовується для перегляду історії входів у систему. |
+| last student | Команда **last student** перевіряє, чи входив конкретний користувач у систему. |
+| usermod -L student | Команда **usermod -L** використовується для блокування облікового запису користувача. |
+| usermod -U student | Команда **usermod -U** використовується для розблокування облікового запису. |
+| userdel student | Команда **userdel** використовується для видалення користувача. |
+| userdel -r student | Команда **userdel -r** видаляє користувача разом із його домашньою директорією. |
+| grep student /etc/group | Команда **grep** використовується для перевірки, чи залишилась інформація про користувача після видалення. |
+
+### 1.4 Практичне виконання роботи у терміналі (керування користувачами та групами)
+
+#### Перегляд інформації про поточного користувача
+
+Для перегляду інформації про поточного користувача я використала команди:
+
+```bash
+id
+whoami
+grep $(whoami) /etc/passwd
+```
+- Команда id показує UID, GID та групи користувача.
+- Команда whoami відображає ім’я поточного користувача.
+- Команда grep $(whoami) /etc/passwd дозволяє знайти запис користувача у системному файлі.
+
+<img width="818" height="118" alt="image" src="https://github.com/user-attachments/assets/97b417ad-3d0f-42bc-beff-3aaab1b9bf4e" />
+
+Скрін - перегляд інформації про користувача за допомогою команди id  
+
+<img width="599" height="81" alt="image" src="https://github.com/user-attachments/assets/d7ede247-5507-44cd-8581-b89b7b057ee2" />
+
+Скрін - перегляд запису користувача у файлі /etc/passwd за допомогою команди grep  
+
+<img width="378" height="88" alt="image" src="https://github.com/user-attachments/assets/73171e37-e48c-48c1-b3db-954bb58630c8" />
+
+Скрін - визначення імені поточного користувача командою whoami
+
+#### Порівняння команд who, w та last
+
+Для аналізу користувачів системи я використала команди:
+```bash
+who
+w
+last
+```
+- Команда who показує тільки базову інформацію про користувачів (ім’я, термінал, час входу).
+- Команда w надає детальну інформацію (активність, навантаження системи, процеси).
+- Команда last показує історію входів у систему.
+
+<img width="600" height="83" alt="image" src="https://github.com/user-attachments/assets/f30d9e58-a95a-406c-9bda-7e70b8ed775f" />
+
+Скрін - who
+
+<img width="817" height="101" alt="image" src="https://github.com/user-attachments/assets/2e04902f-f632-4d37-a545-5661a6f54bff" />
+
+Скрін - w
+
+<img width="838" height="532" alt="image" src="https://github.com/user-attachments/assets/ea601e8f-6dc5-4d0b-a1a8-b967a43e523b" />
+
+Скрін - last
+
+#### Створення нових груп користувачів та визначення їх ідентифікаторів
+
+Для виконання завдання було створено три нові групи користувачів: **super_admins**, **noob_users** та **good_students** за допомогою команди:
+
+```bash
+sudo groupadd super_admins
+sudo groupadd noob_users
+sudo groupadd good_students
+```
+Після створення груп я перевірила їх наявність та ідентифікатори (GID) за допомогою команд:
+```bash
+cat /etc/group | grep super_admins
+cat /etc/group | grep noob_users
+cat /etc/group | grep good_students
+```
+У результаті було встановлено, що кожній групі автоматично присвоюється унікальний ідентифікатор (GID):
+- super_admins - 2001
+- noob_users - 2002
+- good_students - 2003
+
+Ці ідентифікатори використовуються системою для керування доступом до ресурсів.
+
+<img width="567" height="99" alt="image" src="https://github.com/user-attachments/assets/556e6538-a653-415a-9041-9870f18d3c56" />
+
+Скрін - створення груп користувачів
+
+<img width="656" height="158" alt="image" src="https://github.com/user-attachments/assets/4f548c25-c0e2-44ba-bc17-d4ee2d3e9150" />
+
+Скрін - перегляд груп та їх GID у файлі /etc/group
+
+#### Створення користувачів
+
+Було створено трьох користувачів:
+```bash
+sudo useradd -m user1
+sudo useradd -m user2
+sudo useradd -m user3
+```
+Після цього для кожного користувача встановлено пароль:
+```bash
+sudo passwd user1
+sudo passwd user2
+sudo passwd user3
+```
+
+<img width="548" height="67" alt="image" src="https://github.com/user-attachments/assets/d83c848a-bec6-4641-bdeb-7e1d5b18ec19" />
+
+Скрін - створення користувачів
+
+<img width="471" height="295" alt="image" src="https://github.com/user-attachments/assets/4f9c80be-d9e2-4601-9253-9366be56b5f5" />
+
+<img width="932" height="206" alt="image" src="https://github.com/user-attachments/assets/e2f137d5-4471-469b-a58a-059c758cd57a" />
+
+Скрін - встановлення паролів
+
+#### Додавання користувачів до груп
+
+Користувачі були додані до груп відповідно до умов завдання:
+```bash
+sudo usermod -aG super_admins user1
+sudo usermod -aG super_admins user2
+
+sudo usermod -aG noob_users user1
+sudo usermod -aG noob_users user3
+
+sudo usermod -aG good_students user1
+sudo usermod -aG good_students user2
+sudo usermod -aG good_students user3
+```
+
+Перевірка:
+```bash
+getent group super_admins
+getent group noob_users
+getent group good_students
+```
+
+<img width="644" height="164" alt="image" src="https://github.com/user-attachments/assets/ad4a0a62-7320-4e4e-8ccf-39b1af914af9" />
+
+Скрін - додавання користувачів у групи
+
+<img width="548" height="164" alt="image" src="https://github.com/user-attachments/assets/326a1447-2a66-46c1-9a5d-cb4b448e8ec8" />
+
+Скрін - перевірка складу груп
+
+#### Перегляд інформації про групи
+```bash
+getent group
+```
+Було переглянуто всі групи та їх склад.
+
+<img width="509" height="42" alt="image" src="https://github.com/user-attachments/assets/bdae1095-b850-4cb5-ba1f-179b962d4adf" />
+
+<img width="580" height="166" alt="image" src="https://github.com/user-attachments/assets/207a6026-cb5c-4202-a17a-b40ff760830a" />
+
+Скрін - перегляд груп 
+
+#### Видалення користувачів
+
+Користувачі були видалені по черзі:
+```bash
+sudo userdel user1
+sudo userdel user2
+sudo userdel user3
+```
+Після кожного видалення було перевірено склад груп:
+```bash
+getent group
+```
+
+<img width="550" height="146" alt="image" src="https://github.com/user-attachments/assets/29f648c1-2ff9-41e5-8790-83ce0c3df2be" />
+
+Скрін - видалення користувачів
+
+<img width="405" height="48" alt="image" src="https://github.com/user-attachments/assets/05d90759-6b9b-43e7-89f4-ed315cc04627" />
+
+<img width="426" height="219" alt="image" src="https://github.com/user-attachments/assets/27177823-4b86-4e56-8367-78246b3b6613" />
+
+Скрін - перевірка груп після видалення
+
+#### Видалення груп користувачів
+
+Було видалено створені групи:
+```bash
+sudo groupdel super_admins
+sudo groupdel noob_users
+sudo groupdel good_students
+```
+Перевірка:
+```bash
+getent group
+```
+
+<img width="563" height="68" alt="image" src="https://github.com/user-attachments/assets/943709f5-b62f-4e19-a214-9e283a18614c" />
+
+<img width="612" height="85" alt="image" src="https://github.com/user-attachments/assets/12adbe66-3d65-4ac8-b8c8-cad2e9fc8203" />
+
+Скрін - видалення груп
+
+<img width="419" height="45" alt="image" src="https://github.com/user-attachments/assets/bcdfc7c2-5ec6-459b-8295-8a5332908095" />
+
+<img width="359" height="228" alt="image" src="https://github.com/user-attachments/assets/0f33cc85-38cf-41e4-a89d-f32eb4103332" />
+
+Скрін - фінальна перевірка
